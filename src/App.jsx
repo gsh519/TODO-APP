@@ -4,7 +4,6 @@ import { DenseAppBar } from './components/DenseAppBar'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import { TodoList } from './components/TodoList';
 import { InputText } from './components/InputText'
 import { SelectBox } from './components/SelectBox'
 import { SimpleTab } from './components/SimpleTab';
@@ -36,32 +35,55 @@ const App = () => {
     setTodoText(e.target.value);
   }
 
-  const [dailyTodos, setDailyTodos] = useState(['aaa','bbb','ccc','ddd','eee']);
-  const [workTodos, setWorkTodos] = useState(['aaa','bbb','ccc'])
-  const [trainingTodos, setTrainingTodos] = useState(['aaa','bbb'])
+  const [dailyTodos, setDailyTodos] = useState(['f','f','f','f', 'c','c','c','d','d']);
+  const [workTodos, setWorkTodos] = useState([])
+  const [trainingTodos, setTrainingTodos] = useState([])
+
+  const scrolled = () => {
+    const scrollArea = document.getElementById('scroll-area');
+    if (scrollArea) {
+      scrollArea.scrollTop = scrollArea.scrollHeight
+      console.log(scrollArea.scrollHeight)
+    }
+  }
 
   const onClickAdd = () => {
     if (todoText === "") return;
     if (select === 0) {
       const newTodos = [...dailyTodos,todoText];
       setDailyTodos(newTodos);
+      scrolled();
       setTodoText("");
     } else if (select === 1) {
       const newTodos = [...workTodos,todoText];
       setWorkTodos(newTodos);
+      scrolled();
       setTodoText("");
-    } else  {
+    } else {
       const newTodos = [...trainingTodos,todoText];
       setTrainingTodos(newTodos);
+      scrolled();
       setTodoText("");
     }
   }
 
-  // const onClickDelete = (index) => {
-  //   const newIncompleteTodos = [...incompleteTodos];
-  //   newIncompleteTodos.splice(index, 1);
-  //   setTimeout(()=> setIncompleteTodos(newIncompleteTodos));
-  // }
+  const onDailyDelete = (index) => {
+    const newDailyTodos = [...dailyTodos];
+    newDailyTodos.splice(index, 1);
+    setDailyTodos(newDailyTodos);
+  }
+
+  const onWorkDelete = (index) => {
+    const newWorkTodos = [...workTodos];
+    newWorkTodos.splice(index, 1);
+    setWorkTodos(newWorkTodos);
+  }
+
+  const onTrainingDelete = (index) => {
+    const newTrainingTodos = [...trainingTodos];
+    newTrainingTodos.splice(index, 1);
+    setTrainingTodos(newTrainingTodos);
+  }
 
   const [select, setSelect] = React.useState('');
 
@@ -83,7 +105,14 @@ const App = () => {
           </Grid>
           <Grid item xs={8}>
             <Paper className={classes.paper}>
-              <SimpleTab dailyTodos={dailyTodos} workTodos={workTodos} trainingTodos={trainingTodos} />
+              <SimpleTab 
+                dailyTodos={dailyTodos} 
+                workTodos={workTodos} 
+                trainingTodos={trainingTodos} 
+                onDailyDelete={onDailyDelete}
+                onWorkDelete={onWorkDelete}
+                onTrainingDelete={onTrainingDelete}
+              />
             </Paper>
           </Grid>
         </Grid>

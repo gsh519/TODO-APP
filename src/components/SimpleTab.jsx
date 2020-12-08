@@ -54,7 +54,7 @@ export const SimpleTab = (props) => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  const { dailyTodos, workTodos, trainingTodos } = props;
+  const { dailyTodos, workTodos, trainingTodos, onDailyDelete, onWorkDelete, onTrainingDelete } = props;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -70,13 +70,13 @@ export const SimpleTab = (props) => {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <DailyTodoList dailyTodos={dailyTodos} />
+        <DailyTodoList dailyTodos={dailyTodos} onDailyDelete={onDailyDelete} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <WorkTodoList workTodos={workTodos}  />
+        <WorkTodoList workTodos={workTodos} onWorkDelete={onWorkDelete} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <TrainingTodoList trainingTodos={trainingTodos} />
+        <TrainingTodoList trainingTodos={trainingTodos} onTrainingDelete={onTrainingDelete} />
       </TabPanel>
     </div>
   );

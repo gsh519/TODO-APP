@@ -22,7 +22,7 @@ export const SelectBox = (props) => {
   return (
     <div>
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+        <InputLabel id="demo-simple-select-label">カテゴリ</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

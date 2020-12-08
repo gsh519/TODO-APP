@@ -23,7 +23,7 @@ export const InputText = (props) => {
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="standard-basic" label="TODO追加" value={todoText} onChange={onChange} />
+      <TextField id="standard-basic" label="TODO追加" value={todoText} onChange={onChange} autoFocus />
       <Button variant="contained" size='small' className={classes.btn} onClick={onClick}>追加</Button>
     </form>
   )
