@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,37 +12,36 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+    overflow: 'auto',
   },
   title: {
     margin: theme.spacing(4, 0, 2),
   },
-
 }));
 
 
-
-export const TodoList = (props) => {
+export const TrainingTodoList = (props) => {
   const classes = useStyles();
 
-  const {handle, incompleteTodos, onClick } = props;
+  const {trainingTodos} = props;
 
   return(
     <List className={classes.root}>
       <Typography variant="h5" className={classes.title}>
-        やることリスト
+        トレーニングタスク
       </Typography>
-      {incompleteTodos.map((todo, index) => {
+      {trainingTodos.map((todo, index) => {
         return (
           <>
-            <ListItem >
-              <ListItemText primary={todo}/>
-              <Button variant="contained" onClick={() => onClick(index)} >完了</Button>
+            <ListItem key={todo}>
+              <ListItemText primary={todo} key={todo}/>
+              {/* <Button variant="contained" onClick={() => onClick(index)} >完了</Button> */}
             </ListItem>
           </>
         );
       })}
+      
     </List>
   );
 };
