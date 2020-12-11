@@ -35,7 +35,7 @@ const App = () => {
     setTodoText(e.target.value);
   }
 
-  const [dailyTodos, setDailyTodos] = useState(['f','f','f','f', 'c','c','c','d','d']);
+  const [dailyTodos, setDailyTodos] = useState([]);
   const [workTodos, setWorkTodos] = useState([])
   const [trainingTodos, setTrainingTodos] = useState([])
 
@@ -49,19 +49,19 @@ const App = () => {
 
   const onClickAdd = () => {
     if (todoText === "") return;
-    if (select === 0) {
-      const newTodos = [...dailyTodos,todoText];
-      setDailyTodos(newTodos);
-      scrolled();
-      setTodoText("");
-    } else if (select === 1) {
+    if (select === 1) {
       const newTodos = [...workTodos,todoText];
       setWorkTodos(newTodos);
       scrolled();
       setTodoText("");
-    } else {
+    } else if (select === 2) {
       const newTodos = [...trainingTodos,todoText];
       setTrainingTodos(newTodos);
+      scrolled();
+      setTodoText("");
+    } else {
+      const newTodos = [...dailyTodos,todoText];
+      setDailyTodos(newTodos);
       scrolled();
       setTodoText("");
     }
