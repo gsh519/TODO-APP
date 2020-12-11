@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { DailyMessageItem } from './DailyMessageItem';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,6 +25,8 @@ export const DailyTodoList = (props) => {
 
   const {dailyTodos, onDailyDelete} = props;
 
+  const length = dailyTodos.length;
+
   return(
     <>
       <Typography variant="h5" className={classes.title}>
@@ -34,12 +34,10 @@ export const DailyTodoList = (props) => {
       </Typography>
       <List className={classes.root} id={'scroll-area'}>
         {dailyTodos.map((todo, index) => {
+          const isLastItem = length === index + 1;
           return (
             <>
-              <ListItem key={todo} divider>
-                <ListItemText primary={todo} key={todo} />
-                <Button variant="contained" onClick={() => onDailyDelete(index)} >完了</Button>
-              </ListItem>
+              <DailyMessageItem todo={todo} onClick={onDailyDelete} index={index} isLastItem={isLastItem} />
             </>
           );
         })}

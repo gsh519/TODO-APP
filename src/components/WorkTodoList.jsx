@@ -1,11 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-
+import { WorkMessageItem } from './WorkMessageItem';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +23,8 @@ export const WorkTodoList = (props) => {
 
   const {workTodos, onWorkDelete} = props;
 
+  const length = workTodos.length;
+
   return(
     <>
     <Typography variant="h5" className={classes.title}>
@@ -33,12 +32,10 @@ export const WorkTodoList = (props) => {
     </Typography>
     <List className={classes.root} id={'scroll-area'}>
       {workTodos.map((todo, index) => {
+        const isLastItem = length === index + 1;
         return (
           <>
-            <ListItem key={todo} divider>
-              <ListItemText primary={todo} key={todo} />
-              <Button variant="contained" onClick={() => onWorkDelete(index)} >完了</Button>
-            </ListItem>
+            <WorkMessageItem todo={todo} onClick={onWorkDelete} index={index} isLastItem={isLastItem} />
           </>
         );
       })}

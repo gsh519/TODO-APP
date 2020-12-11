@@ -38,6 +38,7 @@ const App = () => {
   const [dailyTodos, setDailyTodos] = useState([]);
   const [workTodos, setWorkTodos] = useState([])
   const [trainingTodos, setTrainingTodos] = useState([])
+  const [select, setSelect] = useState('');
 
   const scrolled = () => {
     const scrollArea = document.getElementById('scroll-area');
@@ -85,7 +86,7 @@ const App = () => {
     setTrainingTodos(newTrainingTodos);
   }
 
-  const [select, setSelect] = React.useState('');
+  
 
   const handleChange = (event) => {
     console.log(event.target.value)

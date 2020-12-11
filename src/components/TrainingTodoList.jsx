@@ -1,10 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import { TrainingMessageItem } from './TrainingMessageItem';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,19 +24,19 @@ export const TrainingTodoList = (props) => {
 
   const {trainingTodos, onTrainingDelete} = props;
 
+  const length = trainingTodos.length;
+  
   return(
     <>
     <Typography variant="h5" className={classes.title}>
         トレーニング
-    </Typography>
+    </Typography> 
     <List className={classes.root} id={'scroll-area'}>
       {trainingTodos.map((todo, index) => {
+        const isLastItem = length === index + 1;
         return (
           <>
-            <ListItem key={todo} divider>
-              <ListItemText primary={todo} key={todo} />
-              <Button variant="contained" onClick={() => onTrainingDelete(index)} >完了</Button>
-            </ListItem>
+            <TrainingMessageItem todo={todo} onClick={onTrainingDelete} index={index} isLastItem={isLastItem} />
           </>
         );
       })}
