@@ -37,7 +37,7 @@ export const DailyTodoList = (props) => {
           const isLastItem = length === index + 1;
           return (
             <>
-              <DailyMessageItem todo={todo} onClick={onDailyDelete} index={index} isLastItem={isLastItem} />
+              <DailyMessageItem key={index.toString()} todo={todo} onClick={onDailyDelete} index={index} isLastItem={isLastItem} />
             </>
           );
         })}

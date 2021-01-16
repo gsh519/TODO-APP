@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .MuiGrid-container {
+    display: block;
+  }
+
+  .MuiGrid-spacing-xs-3 > .MuiGrid-item {
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  .jss2 {
+    display: block;
+  }
+
+  .MuiBox-root-15 {
+    padding: 12px;
+  }
+
+  .MuiGrid-container {
+    display: block !important;
+  }
+}

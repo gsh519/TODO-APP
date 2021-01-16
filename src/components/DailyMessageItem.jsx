@@ -4,7 +4,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 
 export const DailyMessageItem = (props) => {
-  const {todo, onDailyDelete, index, isLastItem} = props;
+  const {todo, onClick, index, isLastItem} = props;
 
   const ref = useRef(null)
 
@@ -18,7 +18,7 @@ export const DailyMessageItem = (props) => {
     <> 
       <ListItem key={todo} divider ref={ref}>
         <ListItemText primary={todo} key={todo} />
-        <Button variant="contained" onClick={() => onDailyDelete(index)} >完了</Button>
+        <Button variant="contained" onClick={() => onClick(index)} >完了</Button>
       </ListItem>
     </>
   )
